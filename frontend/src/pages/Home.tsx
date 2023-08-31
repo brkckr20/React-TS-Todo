@@ -18,7 +18,7 @@ const Home = () => {
           <input
             type="text"
             placeholder="New Todo enter..."
-            className="input w-full rounded-none bg-slate-300"
+            className="input w-full rounded-none bg-slate-100 text-black"
           />
         </div>
         <div className="mt-2">
