@@ -12,9 +12,25 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 router.post("/", async (req: Request, res: Response) => {
-    console.log(req.body);
-  //  await appDataSource.getRepository(Todo).create(req.body);
-    res.send("basarili");
+  try {
+    await appDataSource.getRepository(Todo).save({ todo_name: req.body.todo_name });
+    res.json({
+      status: "success",
+      message : "Kayıt işlemi başarılı.."
+    });
+  } catch (error) {
+    console.log(error)
+  }
 });
+
+
+router.delete("/:id", async (req: Request, res: Response) => {
+  await appDataSource.createQueryBuilder()
+    .delete()
+    .from(Todo)
+    .where("id = :id", { id: parseInt(req.params.id) })
+    .execute();
+    return res.json({status: "success", message: "Kayıt başarıyla silindi" });
+})
 
 export default router;

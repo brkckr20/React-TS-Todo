@@ -36,7 +36,7 @@ const List = () => {
           key={item.id}
           className="my-2 p-2 border border-secondary flex items-center justify-between cursor-pointer hover:bg-secondary-focus"
         >
-          {item.todo_name} <DeleteModal />
+          {item.todo_name} <DeleteModal itemId={item.id} />
         </div>
       ))}
     </React.Fragment>

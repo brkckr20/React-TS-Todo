@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import BottomNavbar from "../components/BottomNavbar";
 import List from "../components/List";
@@ -15,13 +15,15 @@ interface Todo {
 const Home = () => {
   const [todo, setTodo] = useState<Todo>({});
 
-  const { mutate } = useMutation((data: string) => {
-    return axios.post(`${API_URL}/todos`, data);
+  const mutation = useMutation((data: Todo) => {
+    const response = axios.post(`${API_URL}/todos`, data);
+    return response;
   });
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate(todo?.todo_name);
+    mutation.mutate({ todo_name: todo.todo_name });
+    setTodo({ todo_name: "" });
   };
 
   return (
