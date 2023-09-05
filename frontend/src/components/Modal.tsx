@@ -6,14 +6,15 @@ import { API_URL } from "../../config";
 
 interface IModal {
   itemId?: number;
+  handleDelete: () => void;
 }
-const Modal: React.FC<IModal> = ({ itemId }) => {
+const Modal: React.FC<IModal> = ({ handleDelete }) => {
   const [open, setOpen] = useState(false);
 
-  const deleteItem = useMutation((id: any) => {
+  /* const deleteItem = useMutation((id: any) => {
     const response = axios.delete(`${API_URL}/todos/${id}`);
     return response;
-  });
+  }); */
 
   return (
     <React.Fragment>
@@ -33,7 +34,8 @@ const Modal: React.FC<IModal> = ({ itemId }) => {
             </button>
             <button
               className="btn bg-error-content"
-              onClick={() => deleteItem.mutate(itemId)}
+              // onClick={() => deleteItem.mutate(itemId)}
+              onClick={handleDelete}
             >
               Yes
             </button>
