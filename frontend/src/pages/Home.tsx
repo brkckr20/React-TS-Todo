@@ -5,7 +5,6 @@ import List from "../components/List";
 import { useMutation } from "react-query";
 import axios from "axios";
 import { API_URL } from "../../config";
-import { useQuery } from "react-query";
 
 interface Todo {
   id?: number;
