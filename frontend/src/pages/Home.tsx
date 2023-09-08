@@ -13,17 +13,11 @@ interface Todo {
 }
 
 const Home = () => {
-  const [todo, setTodo] = useState<Todo>({});
-
-  const mutation = useMutation((data: Todo) => {
-    const response = axios.post(`${API_URL}/todos`, data);
-    return response;
-  });
+  const [todo, setTodo] = useState<Todo>({ todo_name: "" });
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutation.mutate({ todo_name: todo.todo_name });
-    setTodo({ todo_name: "" });
+    const response = await axios.post(`${API_URL}`, todo);
   };
 
   return (
@@ -44,6 +38,7 @@ const Home = () => {
               className="input w-full rounded-none bg-slate-100 text-black"
               value={todo.todo_name}
               onChange={(e) => setTodo({ todo_name: e.target.value })}
+              name="todo_name"
             />
           </form>
         </div>

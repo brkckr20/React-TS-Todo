@@ -5,16 +5,15 @@ import Note from '../../Models/Note';
 export default class NotesController {
   public async index({response }: HttpContextContract) {
     const notes = await Database.from("notes");
-    return response.json({
-      notes
-    })
+    return response.json(notes);
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const { not_name, description } = request.body();
+    const { todo_name } = request.body();
+
     await Note.create({
-      not_name : not_name,
-      description : description
+      not_name: todo_name,
+      status : "active"
     })
     return response.json({
       message : "Veri kaydetme işlemi tamamlandı"
@@ -58,4 +57,5 @@ export default class NotesController {
       message :"Silindi"
     })
   }
+
 }

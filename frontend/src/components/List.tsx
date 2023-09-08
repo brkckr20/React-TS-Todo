@@ -21,7 +21,7 @@ const List: React.FC<IListProps> = ({ isLoading }) => {
   const queryClient = new QueryClient(); // queryClient'i burada tanımlayın
 
   const fetchItems = async () => {
-    const response = await axios.get(`${API_URL}/todos`); // API endpointinizi buraya ekleyin
+    const response = await axios.get(`${API_URL}`); // API endpointinizi buraya ekleyin
     return response.data;
   };
 

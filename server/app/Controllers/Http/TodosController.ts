@@ -4,7 +4,9 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 export default class TodosController {
   public async index({ response }: HttpContextContract) {
     //const todos = await Database.from("todos");
-    return response.send("todos");
+    return response.json({
+      message : "todos"
+    });
   }
 
   public async create({}: HttpContextContract) {}

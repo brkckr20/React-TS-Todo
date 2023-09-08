@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string("not_name").nullable()
       table.text("description").nullable()
+      table.string("status").nullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
