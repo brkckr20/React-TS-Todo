@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <Header />
-      <div className="max-w-[1400px] mx-auto  mt-4">
+      <div className="max-w-[1400px] mx-auto mt-4 px-3">
         <div className="mb-2 flex justify-end">
           <button className="btn bg-red-600 text-white hover:bg-red-700 duration-300">
             Clear Completed

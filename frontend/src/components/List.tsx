@@ -53,17 +53,19 @@ const List: React.FC<IListProps> = ({ status }) => {
         ? items.map((item: Todo) => (
             <div
               key={item.id}
-              className={`my-2 p-2 border border-secondary flex items-center justify-between cursor-pointer hover:bg-secondary-focus ${
+              className={`flex items-center border border-secondary p-2 my-2 justify-between cursor-pointer hover:bg-secondary-focus ${
                 item.status !== "active" &&
                 "line-through bg-accent border-accent text-white"
               }`}
               onClick={() => updateMutation.mutate(item?.id)}
             >
               {item.not_name}{" "}
-              <DeleteModal
-                itemId={item.id}
-                handleDelete={() => mutation.mutate(item.id)}
-              />
+              <div className="pr-2">
+                <DeleteModal
+                  itemId={item.id}
+                  handleDelete={() => mutation.mutate(item.id)}
+                />
+              </div>
             </div>
           ))
         : items
