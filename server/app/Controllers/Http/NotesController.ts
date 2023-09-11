@@ -9,10 +9,10 @@ export default class NotesController {
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const { todo_name } = request.body();
+    const { not_name } = request.body();
 
     await Note.create({
-      not_name: todo_name,
+      not_name: not_name,
       status : "active"
     })
     return response.json({
@@ -34,8 +34,24 @@ export default class NotesController {
 
   public async update({params,request,response }: HttpContextContract) {
     const { id } = params;
-    const { not_name, description } = request.body();
-    const note = await Note.query()
+    const note = await Note.find(id);
+
+    if (note) {
+
+      if (note.status === "active") {
+        note.status = 'completed';
+        await note.save()
+      } else {
+        note.status = 'active';
+        await note.save()
+      }
+    } else {
+      console.log("Not bulunamadı");
+    }
+
+
+   // const { not_name, description } = request.body();
+  /*  const note = await Note.query()
       .where({ id: id })
       .first();
     note?.merge({
@@ -44,7 +60,7 @@ export default class NotesController {
     }).save()
     return response.json({
       message : "Güncellendi"
-    })
+    }) */
   }
 
   public async destroy({ params,response }: HttpContextContract) {
