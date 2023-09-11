@@ -1,8 +1,14 @@
-import { useState } from "react";
+import React from "react";
 
-const BottomNavbar = () => {
-  const [active, setActive] = useState("All");
+interface IProps {
+  active?: string;
+  setActive?: (newActive: string) => void;
+}
 
+const BottomNavbar: React.FC<IProps> = ({
+  active = "All",
+  setActive = () => {},
+}) => {
   return (
     <div className="btm-nav">
       <button
